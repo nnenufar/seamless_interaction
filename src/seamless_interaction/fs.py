@@ -620,7 +620,12 @@ class SeamlessInteractionFS:
         size_in_gb = info[0].size / 1024 / 1024 / 1024  # type: ignore[union-attr]
         return size_in_gb
 
-    def get_path_list_for_file_id_s3(self, file_id: str) -> list[str]:
+    def get_path_list_for_file_id_s3(
+        self,
+        file_id: str,
+        include_video: bool = True,
+        features_to_download: list[str] | None = None,
+    ) -> list[str]:
         """Get S3 paths for all modalities of a file ID."""
         if self._cached_filelist is None:
             self._load_filelist_cache()
@@ -636,12 +641,9 @@ class SeamlessInteractionFS:
         paths = []
 
         # Audio and video
-        paths.extend(
-            [
-                f"{base_url}/{label}/{split}/audio/{file_id}.wav",
-                f"{base_url}/{label}/{split}/video/{file_id}.mp4",
-            ]
-        )
+        paths.append(f"{base_url}/{label}/{split}/audio/{file_id}.wav")
+        if include_video:
+            paths.append(f"{base_url}/{label}/{split}/video/{file_id}.mp4")
 
         # Features (NPY files)
         for feature_group, features in ALL_FEATURES.items():
@@ -651,22 +653,25 @@ class SeamlessInteractionFS:
                 "movement",
                 "movement_v4",
             ]:
-                for feature in features:
-                    paths.append(
-                        f"{base_url}/{label}/{split}/{feature_group}/{feature}/{file_id}.npy"
-                    )
+                if features_to_download is None or feature_group in features_to_download:
+                    for feature in features:
+                        paths.append(
+                            f"{base_url}/{label}/{split}/{feature_group}/{feature}/{file_id}.npy"
+                        )
 
         # Metadata (JSONL files)
-        for metadata_type in ALL_FEATURES["metadata"]:
-            paths.append(
-                f"{base_url}/{label}/{split}/metadata/{metadata_type}/{file_id}.jsonl"
-            )
+        if features_to_download is None or "metadata" in features_to_download:
+            for metadata_type in ALL_FEATURES["metadata"]:
+                paths.append(
+                    f"{base_url}/{label}/{split}/metadata/{metadata_type}/{file_id}.jsonl"
+                )
 
         # Annotations (JSON files) - optional
-        for annotation_type in ALL_FEATURES["annotations"]:
-            paths.append(
-                f"{base_url}/{label}/{split}/annotations/{annotation_type}/{file_id}.json"
-            )
+        if features_to_download is None or "annotations" in features_to_download:
+            for annotation_type in ALL_FEATURES["annotations"]:
+                paths.append(
+                    f"{base_url}/{label}/{split}/annotations/{annotation_type}/{file_id}.json"
+                )
 
         return paths
 
@@ -708,6 +713,8 @@ class SeamlessInteractionFS:
         *,
         num_workers: int | None = None,
         local_dir: str | None = None,
+        include_video: bool = True,
+        features_to_download: list[str] | None = None,
     ) -> None:
         """Download and organize all data for a file ID from S3."""
         if num_workers is None:
@@ -717,7 +724,9 @@ class SeamlessInteractionFS:
         if local_dir is None:
             raise ValueError("Please configure local_dir")
 
-        files = self.get_path_list_for_file_id_s3(file_id)
+        files = self.get_path_list_for_file_id_s3(
+            file_id, include_video=include_video, features_to_download=features_to_download
+        )
         logger.info(f"Found {len(files)} files for {file_id}")
 
         file_entry = self._cached_filelist[self._cached_filelist["file_id"] == file_id]
@@ -784,6 +793,8 @@ class SeamlessInteractionFS:
         batch: list[str],
         local_dir: str | None = None,
         num_workers: int | None = None,
+        include_video: bool = True,
+        features_to_download: list[str] | None = None,
     ) -> bool:
         """Download a batch of file IDs from S3."""
         if local_dir is None:
@@ -795,7 +806,11 @@ class SeamlessInteractionFS:
 
         for file_id in batch:
             self.gather_file_id_data_from_s3(
-                file_id, num_workers=num_workers, local_dir=local_dir
+                file_id, 
+                num_workers=num_workers, 
+                local_dir=local_dir,
+                include_video=include_video,
+                features_to_download=features_to_download
             )
 
         logger.info(f"Completed downloading batch of {len(batch)} files")

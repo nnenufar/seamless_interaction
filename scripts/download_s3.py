@@ -17,7 +17,7 @@ def download_single_example(file_id: str | None = None):
 
     :param file_id: Specific file ID to download, or None to auto-sample
     """
-    config = DatasetConfig(label="improvised", split="dev", preferred_vendors_only=True)
+    config = DatasetConfig(label="naturalistic", split="dev", preferred_vendors_only=True)
     fs = SeamlessInteractionFS(config=config)
 
     if file_id is None:
@@ -98,7 +98,10 @@ def download_samples_1gb(file_ids: list[str] | None = None, num_samples: int = 1
 
 
 def download_session_exploration(
-    session_key: str | None = None, interactions_per_session: int = 4
+    session_keys: str | list[str] | None = None, 
+    interactions_per_session: int = 0,
+    include_video: bool = True,
+    features_to_download: list[str] | None = None,
 ):
     """
     Download complete session groups for deeper exploration (~400MB per session).
@@ -107,14 +110,17 @@ def download_session_exploration(
     Auto-samples sessions with rich interaction content if no session_key provided.
 
     :param session_key: Session key (V00_S0809) or None to auto-sample
-    :param interactions_per_session: Target interactions per session
+    :param interactions_per_session: Target interactions per session. 0 to download all interactions.
+    :param include_video: Whether to include video data in the download
+    :param features_to_download: List of specific features to download (None for all)
     """
     config = DatasetConfig(
-        label="naturalistic", split="dev", preferred_vendors_only=True, num_workers=4
+        label="naturalistic", split="dev", preferred_vendors_only=True, num_workers=4,
+        local_dir="inspect/samples"
     )
     fs = SeamlessInteractionFS(config=config)
 
-    if session_key is None:
+    if session_keys is None:
         # Auto-sample session groups from preferred vendors
         session_groups = fs.get_session_groups(
             num_sessions=1, interactions_per_session=interactions_per_session
@@ -122,22 +128,29 @@ def download_session_exploration(
         all_file_ids = session_groups[0] if session_groups else []
         print(f"🎲 Auto-sampled session: {len(all_file_ids)} interactions")
     else:
-        # Use specific session key
+        # Use specific session key(s)
+        if isinstance(session_keys, str):
+            session_keys = [session_keys]
+            
         session_groups = fs.get_session_groups(
-            session_keys=[session_key],
+            session_keys=session_keys,
             interactions_per_session=interactions_per_session,
         )
-        all_file_ids = session_groups[0] if session_groups else []
+        all_file_ids = [file_id for group in session_groups for file_id in group]
         print(
-            f"📍 Using session key: {session_key} -> {len(all_file_ids)} interactions"
+            f"📍 Using session keys: {session_keys} -> {len(all_file_ids)} interactions"
         )
 
     if not all_file_ids:
         print("❌ No session interactions found")
         return
 
-    fs.download_batch_from_s3(all_file_ids)
-    print(f"✅ Downloaded session with {len(all_file_ids)} interactions")
+    fs.download_batch_from_s3(
+        all_file_ids, 
+        include_video=include_video, 
+        features_to_download=features_to_download
+    )
+    print(f"✅ Downloaded sessions with {len(all_file_ids)} interactions")
 
 
 def main():
@@ -162,7 +175,7 @@ def main():
     print("   Session key: V00_S0809")
 
     # Uncomment desired download scenario:
-    download_single_example()  # Auto-samples if no file_id provided
+    # download_single_example()  # Auto-samples if no file_id provided
     # download_single_example("V01_S0223_I00000127_P1505")  # Specific file
     # download_interaction_pair()  # Auto-samples interaction pairs
     # download_interaction_pair("V00_S0809_I00000582")  # Specific interaction
@@ -170,6 +183,7 @@ def main():
     # download_samples_1gb(num_samples=20)  # Auto-samples 20 files (~2GB)
     # download_session_exploration()  # Auto-samples 1 rich session
     # download_session_exploration("V00_S0809")  # Specific session
+    download_session_exploration(["V00_S0152", "V00_S0080"], include_video=False, features_to_download=["metadata"])  # Multiple specific sessions
 
 
 if __name__ == "__main__":

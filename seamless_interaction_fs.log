@@ -1,0 +1,71 @@
+2026-03-12 15:53:27,998 - INFO - Loaded filelist with 129370 entries
+2026-03-12 15:53:28,040 - INFO - Downloading batch of 34 files
+2026-03-12 15:53:28,051 - INFO - Found 3 files for V00_S0152_I00000372_P0217
+2026-03-12 15:53:31,658 - INFO - Successfully processed file V00_S0152_I00000372_P0217 to inspect/samples/naturalistic/dev/0000/0000
+2026-03-12 15:53:31,671 - INFO - Found 3 files for V00_S0152_I00000385_P0217
+2026-03-12 15:53:35,099 - INFO - Successfully processed file V00_S0152_I00000385_P0217 to inspect/samples/naturalistic/dev/0000/0000
+2026-03-12 15:53:35,114 - INFO - Found 3 files for V00_S0152_I00000387_P0216
+2026-03-12 15:53:38,696 - INFO - Successfully processed file V00_S0152_I00000387_P0216 to inspect/samples/naturalistic/dev/0000/0002
+2026-03-12 15:53:38,709 - INFO - Found 3 files for V00_S0152_I00000373_P0217
+2026-03-12 15:53:42,245 - INFO - Successfully processed file V00_S0152_I00000373_P0217 to inspect/samples/naturalistic/dev/0000/0003
+2026-03-12 15:53:42,259 - INFO - Found 3 files for V00_S0152_I00000384_P0217
+2026-03-12 15:53:46,716 - INFO - Successfully processed file V00_S0152_I00000384_P0217 to inspect/samples/naturalistic/dev/0000/0003
+2026-03-12 15:53:46,730 - INFO - Found 3 files for V00_S0152_I00000503_P0217
+2026-03-12 15:53:51,570 - INFO - Successfully processed file V00_S0152_I00000503_P0217 to inspect/samples/naturalistic/dev/0000/0003
+2026-03-12 15:53:51,583 - INFO - Found 3 files for V00_S0152_I00000378_P0217
+2026-03-12 15:53:54,179 - INFO - Successfully processed file V00_S0152_I00000378_P0217 to inspect/samples/naturalistic/dev/0000/0007
+2026-03-12 15:53:54,194 - INFO - Found 3 files for V00_S0152_I00000381_P0217
+2026-03-12 15:53:57,807 - INFO - Successfully processed file V00_S0152_I00000381_P0217 to inspect/samples/naturalistic/dev/0000/0007
+2026-03-12 15:53:57,821 - INFO - Found 3 files for V00_S0152_I00000382_P0217
+2026-03-12 15:54:01,287 - INFO - Successfully processed file V00_S0152_I00000382_P0217 to inspect/samples/naturalistic/dev/0000/0008
+2026-03-12 15:54:01,302 - INFO - Found 3 files for V00_S0152_I00000383_P0217
+2026-03-12 15:54:04,679 - INFO - Successfully processed file V00_S0152_I00000383_P0217 to inspect/samples/naturalistic/dev/0000/0011
+2026-03-12 15:54:04,693 - INFO - Found 3 files for V00_S0152_I00000371_P0216
+2026-03-12 15:54:07,601 - INFO - Successfully processed file V00_S0152_I00000371_P0216 to inspect/samples/naturalistic/dev/0000/0013
+2026-03-12 15:54:07,613 - INFO - Found 3 files for V00_S0152_I00000140_P0217
+2026-03-12 15:54:12,229 - INFO - Successfully processed file V00_S0152_I00000140_P0217 to inspect/samples/naturalistic/dev/0000/0014
+2026-03-12 15:54:12,245 - INFO - Found 3 files for V00_S0152_I00000384_P0216
+2026-03-12 15:54:16,550 - INFO - Successfully processed file V00_S0152_I00000384_P0216 to inspect/samples/naturalistic/dev/0000/0015
+2026-03-12 15:54:16,564 - INFO - Found 3 files for V00_S0152_I00000135_P0217
+2026-03-12 15:54:19,566 - INFO - Successfully processed file V00_S0152_I00000135_P0217 to inspect/samples/naturalistic/dev/0000/0018
+2026-03-12 15:54:19,580 - INFO - Found 3 files for V00_S0152_I00000386_P0217
+2026-03-12 15:54:23,378 - INFO - Successfully processed file V00_S0152_I00000386_P0217 to inspect/samples/naturalistic/dev/0000/0019
+2026-03-12 15:54:23,391 - INFO - Found 3 files for V00_S0152_I00000374_P0216
+2026-03-12 15:54:26,962 - INFO - Successfully processed file V00_S0152_I00000374_P0216 to inspect/samples/naturalistic/dev/0000/0021
+2026-03-12 15:54:26,976 - INFO - Found 3 files for V00_S0152_I00000140_P0216
+2026-03-12 15:54:31,480 - INFO - Successfully processed file V00_S0152_I00000140_P0216 to inspect/samples/naturalistic/dev/0000/0022
+2026-03-12 15:54:31,494 - INFO - Found 3 files for V00_S0152_I00000378_P0216
+2026-03-12 15:54:34,597 - INFO - Successfully processed file V00_S0152_I00000378_P0216 to inspect/samples/naturalistic/dev/0000/0022
+2026-03-12 15:54:34,610 - INFO - Found 3 files for V00_S0152_I00000377_P0217
+2026-03-12 15:54:38,632 - INFO - Successfully processed file V00_S0152_I00000377_P0217 to inspect/samples/naturalistic/dev/0000/0024
+2026-03-12 15:54:38,645 - INFO - Found 3 files for V00_S0152_I00000503_P0216
+2026-03-12 15:54:43,574 - INFO - Successfully processed file V00_S0152_I00000503_P0216 to inspect/samples/naturalistic/dev/0000/0024
+2026-03-12 15:54:43,589 - INFO - Found 3 files for V00_S0152_I00000135_P0216
+2026-03-12 15:54:46,655 - INFO - Successfully processed file V00_S0152_I00000135_P0216 to inspect/samples/naturalistic/dev/0000/0025
+2026-03-12 15:54:46,670 - INFO - Found 3 files for V00_S0152_I00000372_P0216
+2026-03-12 15:54:49,704 - INFO - Successfully processed file V00_S0152_I00000372_P0216 to inspect/samples/naturalistic/dev/0000/0026
+2026-03-12 15:54:49,717 - INFO - Found 3 files for V00_S0152_I00000377_P0216
+2026-03-12 15:54:53,676 - INFO - Successfully processed file V00_S0152_I00000377_P0216 to inspect/samples/naturalistic/dev/0000/0026
+2026-03-12 15:54:53,690 - INFO - Found 3 files for V00_S0152_I00000383_P0216
+2026-03-12 15:54:56,938 - INFO - Successfully processed file V00_S0152_I00000383_P0216 to inspect/samples/naturalistic/dev/0000/0028
+2026-03-12 15:54:56,953 - INFO - Found 3 files for V00_S0152_I00000386_P0216
+2026-03-12 15:55:00,793 - INFO - Successfully processed file V00_S0152_I00000386_P0216 to inspect/samples/naturalistic/dev/0000/0029
+2026-03-12 15:55:00,806 - INFO - Found 3 files for V00_S0152_I00000381_P0216
+2026-03-12 15:55:04,353 - INFO - Successfully processed file V00_S0152_I00000381_P0216 to inspect/samples/naturalistic/dev/0000/0030
+2026-03-12 15:55:04,366 - INFO - Found 3 files for V00_S0152_I00000373_P0216
+2026-03-12 15:55:07,791 - INFO - Successfully processed file V00_S0152_I00000373_P0216 to inspect/samples/naturalistic/dev/0000/0031
+2026-03-12 15:55:07,804 - INFO - Found 3 files for V00_S0152_I00000376_P0216
+2026-03-12 15:55:12,919 - INFO - Successfully processed file V00_S0152_I00000376_P0216 to inspect/samples/naturalistic/dev/0000/0033
+2026-03-12 15:55:12,934 - INFO - Found 3 files for V00_S0152_I00000376_P0217
+2026-03-12 15:55:17,410 - INFO - Successfully processed file V00_S0152_I00000376_P0217 to inspect/samples/naturalistic/dev/0000/0035
+2026-03-12 15:55:17,423 - INFO - Found 3 files for V00_S0152_I00000385_P0216
+2026-03-12 15:55:21,082 - INFO - Successfully processed file V00_S0152_I00000385_P0216 to inspect/samples/naturalistic/dev/0000/0035
+2026-03-12 15:55:21,098 - INFO - Found 3 files for V00_S0152_I00000374_P0217
+2026-03-12 15:55:24,663 - INFO - Successfully processed file V00_S0152_I00000374_P0217 to inspect/samples/naturalistic/dev/0000/0038
+2026-03-12 15:55:24,676 - INFO - Found 3 files for V00_S0152_I00000387_P0217
+2026-03-12 15:55:28,034 - INFO - Successfully processed file V00_S0152_I00000387_P0217 to inspect/samples/naturalistic/dev/0000/0041
+2026-03-12 15:55:28,048 - INFO - Found 3 files for V00_S0152_I00000371_P0217
+2026-03-12 15:55:30,741 - INFO - Successfully processed file V00_S0152_I00000371_P0217 to inspect/samples/naturalistic/dev/0000/0043
+2026-03-12 15:55:30,753 - INFO - Found 3 files for V00_S0152_I00000382_P0216
+2026-03-12 15:55:34,172 - INFO - Successfully processed file V00_S0152_I00000382_P0216 to inspect/samples/naturalistic/dev/0000/0043
+2026-03-12 15:55:34,173 - INFO - Completed downloading batch of 34 files

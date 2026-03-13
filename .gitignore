@@ -37,3 +37,6 @@ __pycache__/
 
 # pytest
 .pytest_cache/
+
+inspect/processed
+inspect/samples
