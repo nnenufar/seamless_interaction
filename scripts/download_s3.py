@@ -5,7 +5,9 @@
 # LICENSE file in the root directory of this source tree.
 
 from seamless_interaction.fs import DatasetConfig, SeamlessInteractionFS
+import json
 
+SESSION_KEYS = "assets/sessions.json"
 
 def download_single_example(file_id: str | None = None):
     """
@@ -99,8 +101,9 @@ def download_samples_1gb(file_ids: list[str] | None = None, num_samples: int = 1
 
 def download_session_exploration(
     session_keys: str | list[str] | None = None, 
-    interactions_per_session: int = 0,
-    include_video: bool = True,
+    interactions_per_session: int = 0, # All
+    num_sessions: int = 0,             # All
+    include_video: bool = False,
     features_to_download: list[str] | None = None,
 ):
     """
@@ -109,7 +112,7 @@ def download_session_exploration(
     Perfect for studying conversational context and session dynamics.
     Auto-samples sessions with rich interaction content if no session_key provided.
 
-    :param session_key: Session key (V00_S0809) or None to auto-sample
+    :param session_key: Session key (V00_S0809) or List of keys or None to auto-sample
     :param interactions_per_session: Target interactions per session. 0 to download all interactions.
     :param include_video: Whether to include video data in the download
     :param features_to_download: List of specific features to download (None for all)
@@ -123,7 +126,7 @@ def download_session_exploration(
     if session_keys is None:
         # Auto-sample session groups from preferred vendors
         session_groups = fs.get_session_groups(
-            num_sessions=1, interactions_per_session=interactions_per_session
+            num_sessions=num_sessions, interactions_per_session=interactions_per_session
         )
         all_file_ids = session_groups[0] if session_groups else []
         print(f"🎲 Auto-sampled session: {len(all_file_ids)} interactions")
@@ -134,6 +137,7 @@ def download_session_exploration(
             
         session_groups = fs.get_session_groups(
             session_keys=session_keys,
+            num_sessions=num_sessions,
             interactions_per_session=interactions_per_session,
         )
         all_file_ids = [file_id for group in session_groups for file_id in group]
@@ -165,14 +169,6 @@ def main():
     print("2. Interaction pair (~200MB) - Conversational dynamics")
     print("3. Sample set (~1GB) - Initial prototyping")
     print("4. Session exploration (~400MB/session) - Deep context study")
-    print()
-    print("💡 All options auto-sample from preferred vendors if no keys provided")
-    print("   Preferred: V00, V01 (smaller files)")
-    print("   Avoided: V03 (larger 100MB-800MB videos)")
-    print()
-    print("📍 You can also specify exact keys:")
-    print("   Interaction key: V00_S0809_I00000582")
-    print("   Session key: V00_S0809")
 
     # Uncomment desired download scenario:
     # download_single_example()  # Auto-samples if no file_id provided
@@ -183,8 +179,11 @@ def main():
     # download_samples_1gb(num_samples=20)  # Auto-samples 20 files (~2GB)
     # download_session_exploration()  # Auto-samples 1 rich session
     # download_session_exploration("V00_S0809")  # Specific session
-    download_session_exploration(["V00_S0152", "V00_S0080"], include_video=False, features_to_download=["metadata"])  # Multiple specific sessions
 
+    with open(SESSION_KEYS, "r") as f:
+        session_keys = json.load(f)
+    
+    download_session_exploration(session_keys, include_video=False, features_to_download=["metadata"], num_sessions=0,interactions_per_session=0)  # Multiple specific sessions
 
 if __name__ == "__main__":
     main()
