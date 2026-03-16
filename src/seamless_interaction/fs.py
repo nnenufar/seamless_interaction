@@ -462,7 +462,10 @@ class SeamlessInteractionFS:
                 if session_file_ids:
                     groups.append(session_file_ids)
 
-            return groups[:num_sessions]
+            if num_sessions > 0:
+                groups = groups[:num_sessions]
+
+            return groups
         else:
             # Auto-sample session groups
             return self._sample_session_groups(
