@@ -13,6 +13,7 @@ import re
 import shutil
 import tarfile
 import tempfile
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from functools import partial
 from pathlib import Path
@@ -805,16 +806,19 @@ class SeamlessInteractionFS:
         if num_workers is None:
             num_workers = self.config.num_workers
 
-        logger.info(f"Downloading batch of {len(batch)} files")
+        logger.info(f"Downloading batch of {len(batch)} files using {num_workers} workers")
 
-        for file_id in batch:
+        def _download_worker(file_id: str):
             self.gather_file_id_data_from_s3(
                 file_id, 
-                num_workers=num_workers, 
+                num_workers=1, 
                 local_dir=local_dir,
                 include_video=include_video,
                 features_to_download=features_to_download
             )
+
+        with ThreadPoolExecutor(max_workers=num_workers) as executor:
+            executor.map(_download_worker, batch)
 
         logger.info(f"Completed downloading batch of {len(batch)} files")
         return True

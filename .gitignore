@@ -40,3 +40,7 @@ __pycache__/
 
 inspect/processed
 inspect/samples
+
+slurm/out
+
+./seamless_interaction_fs.log

@@ -8,6 +8,7 @@ from seamless_interaction.fs import DatasetConfig, SeamlessInteractionFS
 import json
 
 SESSION_KEYS = "assets/sessions.json"
+LOCAL_DIR = "/hadatasets/joao.lima/data/seamless_interaction"
 
 def download_single_example(file_id: str | None = None):
     """
@@ -118,8 +119,8 @@ def download_session_exploration(
     :param features_to_download: List of specific features to download (None for all)
     """
     config = DatasetConfig(
-        label="naturalistic", split="dev", preferred_vendors_only=True, num_workers=4,
-        local_dir="inspect/samples"
+        label="naturalistic", split="test", preferred_vendors_only=False, num_workers=2,
+        local_dir=LOCAL_DIR
     )
     fs = SeamlessInteractionFS(config=config)
 
