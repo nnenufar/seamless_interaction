@@ -1,0 +1,18 @@
+{
+  "naturalisticSamples_RelTotal": "57.20%",
+  "relationship_detail_counts": {
+    "stranger": 17935,
+    "friends": 11555,
+    "coworkers": 2219,
+    "family-generic": 1748,
+    "familiar-generic": 1744,
+    "dating/spouse/romantic_partner": 1129,
+    "classmates": 537,
+    "siblings": 84,
+    "parent_child": 50,
+    "neighbors": 24,
+    "roommates": 13
+  },
+  "personalitySamples_RelNaturalistic": "53.43%",
+  "personalitySamples_RelTotal": "30.56%"
+}

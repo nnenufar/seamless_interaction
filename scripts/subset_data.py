@@ -4,6 +4,9 @@ import json
 df = pd.read_csv("assets/interaction_aggregated.csv")
 total_num_samples = len(df)
 
+df = df.replace("Undisclosed", pd.NA)
+df = df.replace("", pd.NA)
+
 df_nat_ipc_rel = df[
                 (df["label"] == "naturalistic") &
                 (df["interaction_type"] == "ipc_conversation") &
@@ -27,8 +30,7 @@ perso_columns = [
 ]
 
 df_perso = df_nat_ipc_rel[
-    df_nat_ipc_rel[perso_columns].notna().all(axis=1) &
-    df_nat_ipc_rel[perso_columns].ne("Undisclosed").all(axis=1)
+    df_nat_ipc_rel[perso_columns].notna().all(axis=1)
 ]
 
 perso_num_samples = len(df_perso)

@@ -243,8 +243,9 @@ def main():
                 row = future.result()
                 csv_rows.append(row)
                 done += 1
-                if done % 10 == 0 or done == total:
-                    logger.info(f"  {done}/{total} pairs processed")
+                if done % 100 == 0 or done == total:
+                    percent = (done / total) * 100
+                    logger.info(f"  {done}/{total} ({percent:.1f}%) pairs processed")
             except Exception as exc:
                 logger.error(f"  Failed to process {interaction_key}: {exc}")
 
